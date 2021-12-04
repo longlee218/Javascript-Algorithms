@@ -9,7 +9,7 @@ const search = (nums, target) => {
         if (target > nums[mid]) {
             start = mid + 1;
         } else {
-            end = mid;
+            end = mid; c
         }
     }
     return nums[start] === target ? start : -1;
