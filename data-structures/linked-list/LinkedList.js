@@ -3,6 +3,7 @@ const Node = require('./Node');
 class LinkedList {
 
     constructor() {
+        console.log("heelo")
         this.head = null;
         this.tail = null;
     }
@@ -46,30 +47,39 @@ class LinkedList {
 
     deleteHead() {
         if (!this.head) {
-            return 0;
+            return null;
         }
+        let deleteNode = null;
         if (this.head === this.tail) {
+            deleteNode = this.head;
             this.head = null;
             this.tail = null;
+            return deleteNode;
         }
+        deleteNode = this.head;
         this.head = this.head.next;
-        return 1;
+        return deleteNode;
     }
 
     deleteTail() {
         if (!this.tail) {
             return null;
         }
+        let deleteNode = null;
         if (this.head === this.tail) {
+            deleteNode = this.head;            
             this.head = null;
             this.tail = null;
+            return deleteNode;
         }
         let currNode = this.head;
         while (currNode.next.next) {
             currNode = currNode.next;
         }
+        deleteNode = currNode.next;
         currNode.next = null;
         this.tail = currNode;
+        return deleteNode;
     }
 
     toArray() {
