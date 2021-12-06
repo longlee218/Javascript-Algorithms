@@ -3,7 +3,6 @@ const Node = require('./Node');
 class LinkedList {
 
     constructor() {
-        console.log("heelo")
         this.head = null;
         this.tail = null;
     }
@@ -31,10 +30,10 @@ class LinkedList {
         return this;
     }
 
-    find(value, callback = undefined) {
+    find({ value, callback = undefined }) {
         let currNode = this.head;
         while (currNode) {
-            if (callback && callback.call(currNode.value)) {
+            if (callback && callback(currNode.value)) {
                 return currNode;
             }
             if (value && currNode.value === value) {
@@ -42,7 +41,7 @@ class LinkedList {
             }
             currNode = currNode.next;
         }
-        return null;
+        return undefined;
     }
 
     deleteHead() {
@@ -67,7 +66,7 @@ class LinkedList {
         }
         let deleteNode = null;
         if (this.head === this.tail) {
-            deleteNode = this.head;            
+            deleteNode = this.head;
             this.head = null;
             this.tail = null;
             return deleteNode;
@@ -79,6 +78,32 @@ class LinkedList {
         deleteNode = currNode.next;
         currNode.next = null;
         this.tail = currNode;
+        return deleteNode;
+    }
+
+    delete(value) {
+        let deleteNode = null;
+        if (!this.head)
+            return deleteNode;
+
+        if (this.head === this.tail) {
+            deleteNode = this.head;
+            this.head = null;
+            this.tail = null;
+            return deleteNode;
+        }
+        let currNode = this.head;
+        while (currNode.next && currNode.next.value !== value) {
+            currNode = currNode.next;
+        }
+        if (!currNode.next) {
+            deleteNode = currNode.next;
+            currNode.next = null;
+            this.tail = currNode;
+        } else {
+            deleteNode = currNode.next;
+            currNode.next = currNode.next.next;
+        }
         return deleteNode;
     }
 
@@ -109,7 +134,7 @@ class LinkedList {
         }
         this.head.next = null;
         this.tail = this.head;
-        this.head =  prevNode;
+        this.head = prevNode;
         return this;
     }
 

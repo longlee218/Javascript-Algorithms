@@ -7,8 +7,7 @@ linkedList.append(3);
 linkedList.append(4);
 linkedList.append(5);
 
-console.log(linkedList.find(2).value);
-
 console.log(linkedList.toString());
-console.log("---Revers---");
-console.log(linkedList.reverse().toString());
+linkedList.delete(4);
+console.log('------------------------');
+console.log(linkedList.toString());
