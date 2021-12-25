@@ -9,5 +9,4 @@ hashtable.set('longdz', function () {
 hashtable.set('longdz2', function () {
     console.log("hello2");
 });
-
-console.log(hashtable.getkeys());
+console.log(hashtable.buckets);
